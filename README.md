@@ -70,6 +70,7 @@ The **Smart Campus Placement Portal** is a modern web application built using th
 * Apply for jobs
 * Track application status
 * student get shortlist then get a Email confirmation
+*  📄 Resume Upload System
 
 ### 🏢 Company Panel
 
@@ -174,24 +175,18 @@ npm start
 ---
 
 ## 📸 Screenshots
+<img width="685" height="652" alt="Screenshot 2026-04-30 234630" src="https://github.com/user-attachments/assets/5a9c59aa-9c89-4afa-bbd2-69fad5e2c255" />
 
-*Add screenshots here for better UI showcase*
+*Dashboard*
+<img width="775" height="700" alt="Screenshot 2026-04-30 235004" src="https://github.com/user-attachments/assets/fb16392a-04c1-4ccf-803b-b2ead3c09eab" />
 
-```
-<img width="685" height="652" alt="Screenshot 2026-04-30 234630" src="https://github.com/user-attachments/assets/1a84d4c7-e8ee-490d-b8e3-1353ffbe0743" />
 
-<img width="775" height="700" alt="Screenshot 2026-04-30 235004" src="https://github.com/user-attachments/assets/f56648a3-f239-403f-82d7-784cfd083b1b" />
-
-```
-
----
 
 ## 🎯 Future Enhancements
-
-* 📄 Resume Upload System
-* 📧 Email Notifications
 * 📊 Analytics Dashboard
-* 📱 Mobile Responsiveness
+* 📱 Interview appearences
+* Company OA
+* hired by company
 
 ---
 
