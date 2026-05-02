@@ -79,7 +79,7 @@ function Applicants() {
             {app.student?.resume && (
               <p>
                 <a
-                  href={`http://localhost:5000/${app.student.resume}`}
+                  href={app.student.resume}
                   target="_blank"
                   rel="noreferrer"
                 >
