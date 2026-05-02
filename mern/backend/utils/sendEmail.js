@@ -1,30 +1,26 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
+// Initialize Resend with API key from environment
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+/**
+ * Send email using Resend
+ * @param {string} to - recipient email
+ * @param {string} subject - email subject
+ * @param {string} html - HTML content
+ */
 const sendEmail = async (to, subject, html) => {
   try {
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
+    const response = await resend.emails.send({
+      from: "Placement Portal <onboarding@resend.dev>", // default test sender
+      to: to,
+      subject: subject,
+      html: html,
     });
 
-    await transporter.verify();
-    console.log("✅ Email server connected");
-
-    const info = await transporter.sendMail({
-      from: `"Placement Portal 🚀" <${process.env.EMAIL_USER}>`,
-      to,
-      subject,
-      html,
-    });
-
-    console.log("📧 Email sent:", info.response);
+    console.log("📧 Email sent successfully:", response);
   } catch (error) {
-    console.error("❌ Email error:", error.message);
+    console.error("❌ Email sending failed:", error);
   }
 };
 
