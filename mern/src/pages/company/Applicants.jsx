@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar";
 import StatusBadge from "../../components/StatusBadge";
 
 function Applicants() {
-  const { jobId } = useParams(); // ✅ REQUIRED
+  const { jobId } = useParams();
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -17,7 +17,7 @@ function Applicants() {
 
   const fetchApplicants = async () => {
     try {
-      const res = await API.get(`/applications/job/${jobId}`); // ✅ FIXED
+      const res = await API.get(`/applications/job/${jobId}`);
       setApplications(res.data);
     } catch (error) {
       console.error(error);
@@ -29,7 +29,7 @@ function Applicants() {
 
   const updateStatus = async (applicationId, status) => {
     try {
-      await API.put(`/applications/${applicationId}/status`, { status }); // ✅ FIXED
+      await API.put(`/applications/${applicationId}/status`, { status });
       alert(`Student ${status}`);
       fetchApplicants();
     } catch (error) {
@@ -76,21 +76,18 @@ function Applicants() {
               <b>Status:</b> <StatusBadge status={app.status} />
             </p>
 
-           {app.student?.resume && (
-            <p>
-            <a
-            href={
-        app.student.resume.startsWith("http")
-          ? app.student.resume
-          : `https://placement-backend-ta2e.onrender.com/${app.student.resume}`
-      }
-      target="_blank"
-      rel="noreferrer"
-    >
-      View Resume
-    </a>
-  </p>
-)}
+            {/* ✅ FINAL FIX: ALWAYS use stored URL */}
+            {app.student?.resume && (
+              <p>
+                <a
+                  href={app.student.resume}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View Resume
+                </a>
+              </p>
+            )}
 
             {app.status === "applied" && (
               <div style={{ marginTop: "10px" }}>
