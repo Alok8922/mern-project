@@ -44,7 +44,8 @@ const updateProfile = async (req, res) => {
       if (req.body.skills) user.skills = req.body.skills;
 
       if (req.file) {
-        user.resume = req.file.path;
+  const fileUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+  user.resume = fileUrl;
       }
     }
 
