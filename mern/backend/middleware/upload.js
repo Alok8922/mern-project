@@ -7,10 +7,9 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: async (req, file) => {
     return {
-      folder: "resumes",          // folder in Cloudinary
-      resource_type: "raw",       // required for PDF
-      public_id: Date.now() + "-" + file.originalname,
-      format: "pdf",              // ensure pdf format
+      folder: "resumes",
+      resource_type: "raw", // required for PDF
+      public_id: Date.now(), // simple unique id
     };
   },
 });

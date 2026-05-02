@@ -43,9 +43,9 @@ const updateProfile = async (req, res) => {
       if (req.body.cgpa) user.cgpa = req.body.cgpa;
       if (req.body.skills) user.skills = req.body.skills;
 
+      // ✅ FIXED: Use Cloudinary URL
       if (req.file) {
-  const fileUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
-  user.resume = fileUrl;
+        user.resume = req.file.path;
       }
     }
 
