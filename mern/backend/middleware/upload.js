@@ -5,10 +5,10 @@ const cloudinary = require("../utils/cloudinary");
 // Cloudinary storage configuration
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  params: async (req, file) => {
+  params: (req, file) => {
     return {
       folder: "resumes",
-      resource_type: "auto", // ✅ IMPORTANT: auto handles PDF correctly
+      resource_type: "raw",          // 🔥 FORCE RAW for PDFs (fixes viewer issue)
       public_id: Date.now().toString(), // unique id
     };
   },
