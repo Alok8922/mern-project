@@ -11,6 +11,7 @@ function Profile() {
   });
 
   const [resume, setResume] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -22,6 +23,8 @@ function Profile() {
 
   const submitProfile = async () => {
     try {
+      setLoading(true);
+
       const formData = new FormData();
       formData.append("phone", form.phone);
       formData.append("branch", form.branch);
@@ -29,19 +32,22 @@ function Profile() {
       formData.append("skills", form.skills);
 
       if (resume) {
-        formData.append("resume", resume);
+        formData.append("resume", resume); // MUST be "resume"
       }
 
-      await API.post("/profile", formData, {
+      // ✅ FIX: use PUT instead of POST
+      await API.put("/profile", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
 
-      alert("Profile & Resume saved successfully");
+      alert("Profile & Resume saved successfully ✅");
     } catch (error) {
-      console.error(error);
-      alert("Failed to save profile");
+      console.error("UPLOAD ERROR:", error);
+      alert("Failed to save profile ❌");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -89,7 +95,7 @@ function Profile() {
           style={{ ...inputStyle, height: "80px" }}
         />
 
-        {/* 🔥 RESUME UPLOAD */}
+        {/* ✅ Resume Upload */}
         <input
           type="file"
           accept=".pdf"
@@ -97,7 +103,9 @@ function Profile() {
           style={inputStyle}
         />
 
-        <button onClick={submitProfile}>Save Profile</button>
+        <button onClick={submitProfile} disabled={loading}>
+          {loading ? "Uploading..." : "Save Profile"}
+        </button>
       </div>
     </>
   );
