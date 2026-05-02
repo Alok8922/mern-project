@@ -76,17 +76,21 @@ function Applicants() {
               <b>Status:</b> <StatusBadge status={app.status} />
             </p>
 
-            {app.student?.resume && (
-              <p>
-                <a
-                  href={app.student.resume}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  View Resume
-                </a>
-              </p>
-            )}
+           {app.student?.resume && (
+            <p>
+            <a
+            href={
+        app.student.resume.startsWith("http")
+          ? app.student.resume
+          : `https://placement-backend-ta2e.onrender.com/${app.student.resume}`
+      }
+      target="_blank"
+      rel="noreferrer"
+    >
+      View Resume
+    </a>
+  </p>
+)}
 
             {app.status === "applied" && (
               <div style={{ marginTop: "10px" }}>
