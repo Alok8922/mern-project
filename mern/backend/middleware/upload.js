@@ -8,8 +8,8 @@ const storage = new CloudinaryStorage({
   params: async (req, file) => {
     return {
       folder: "resumes",
-      resource_type: "raw", // required for PDF
-      public_id: Date.now(), // simple unique id
+      resource_type: "auto", // ✅ IMPORTANT: auto handles PDF correctly
+      public_id: Date.now().toString(), // unique id
     };
   },
 });
